@@ -1,15 +1,19 @@
 \name{PID.db}
-\alias{PID.db}
 \docType{data}
-\title{pathway catalogues from Pathway Interaction Database(PID)}
+\alias{PID.db}
+\title{
+pathway catalogues from Pathway Interaction Database(PID)
+}
 \description{
 pathway catalogues from Pathway Interaction Database(PID)
 }
-\usage{data(PID.db)}
+\usage{
+data(PID.db)
+}
 \details{
 The pathway data is parsed from XML format file provided by PID FTP site.
 The perl code for parsing pathway data can be found at author's website
-(\url{http://mcube.nju.edu.cn/jwang/lab/soft/cepa/index.html}).
+(\url{http://mcube.nju.edu.cn/jwang/lab/soft/cepa/index.html} ).
 
 There are four pathway catalogues which are NCI_Nature, BioCarta, KEGG
 and Reactome.
@@ -39,24 +43,25 @@ from PID, so not all the pathways listed on the PID website are in PID.db.
 }
 \value{
 A list containing four component:
-\item{NCI}{NCI_Nature-curated pathway catalogue}
-\item{BioCarta}{BioCarta pathway catalogue}
-\item{KEGG}{KEGG pathway catalogue}
-\item{Reactome}{Reactome pathway catalogue}
+
+\describe{
+  \item{NCI}{NCI_Nature-curated pathway catalogue}
+  \item{BioCarta}{BioCarta pathway catalogue}
+  \item{KEGG}{KEGG pathway catalogue}
+  \item{Reactome}{Reactome pathway catalogue}
+}
 
 Each pathway catalogue is a \code{pathway.catalogue} class object. Each pathway
-catalogue can be used directly in \link{cepa.all} and \link{cepa}
-
+catalogue can be used directly in \code{\link{cepa.all}} and \code{\link{cepa}}
 }
-\source{
+\section{Source}{
 \url{ftp://ftp1.nci.nih.gov/pub/PID/XML/NCI-Nature_Curated.xml.gz}
 
-\url{ftp://ftp1.nci.nih.gov/pub/PID/XML/BioCarta.xml.gz} 
+\url{ftp://ftp1.nci.nih.gov/pub/PID/XML/BioCarta.xml.gz}
 
-\url{ftp://ftp1.nci.nih.gov/pub/PID/XML/Reactome.xml.gz} 
+\url{ftp://ftp1.nci.nih.gov/pub/PID/XML/Reactome.xml.gz}
 
-\url{ftp://ftp1.nci.nih.gov/pub/PID/XML/KEGG.xml.gz}
-}
+\url{ftp://ftp1.nci.nih.gov/pub/PID/XML/KEGG.xml.gz}}
 \examples{
 data(PID.db)
 names(PID.db)

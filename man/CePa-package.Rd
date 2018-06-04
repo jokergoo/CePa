@@ -1,10 +1,12 @@
 \name{CePa-package}
-\alias{CePa}
-\alias{CePa-package}
 \docType{package}
-\title{Centrality-based pathway enrichment}
+\alias{CePa-package}
+\title{
+Centrality-based pathway enrichment
+}
 \description{
-Use pathway topology information to assign weight to pathway nodes.}
+Centrality-based pathway enrichment
+}
 \details{
 Gene set enrichment analysis is broadly used in microarray data analysis
 aimed to find which biological functions are affected by a group of 
@@ -56,16 +58,14 @@ all types of nodes are retained.
 The core function of the package is \code{\link{cepa.all}}. There is also a parallel version
 \code{\link{cepa.all.parallel}}. User can refer to the vignette to find
 how to use it (\code{vignette("CePa")}).
-
 }
 \references{
 Gu Z, Liu J, Cao K, Zhang J, Wang J. Centrality-based pathway enrichment: a systematic 
 approach for finding significant pathways dominated by key genes. BMC Syst Biol. 2012 Jun 6;6(1):56.
 }
 \author{
-Zuguang Gu <jokergoo@gmail.com>
+Zuguang Gu <z.gu@dkfz.de>
 }
-\keyword{package}
 \examples{
 \dontrun{
 
@@ -84,7 +84,6 @@ res = cepa.all(dif = dif, bk = bk, pc = PID.db$NCI)
 # after about 20 min, you can obtain a detailed report of the analysis
 report(res)
 
-               
 # if you have a complete gene expression data, you can apply the centrality-extended
 # GSA methods
 res = cepa.all(mat = mat, label = label, pc = PID.db$NCI)

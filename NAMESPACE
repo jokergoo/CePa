@@ -1,29 +1,44 @@
-export (
-	cepa.all,
-	cepa.all.parallel,
-	cepa.ora.all,
-	cepa.univariate.all,
-	cepa,
-	cepa.ora,
-	cepa.univariate,
-	generate.pathway,
-	get.cepa,
-	p.table,
-	pathway.nodes,
-	plot.cepa.all,
-	print.cepa.all,
-	plot.cepa,
-	print.cepa,
-	plotGraph,
-	plotNull,
-	reach,
-	report,
-	spread,
-	radiality,
-	set.pathway.catalogue,
-	print.pathway.catalogue,
-	plot.pathway.catalogue,
-	sampleLabel,
-	read.cls,
-	read.gct
-)
+S3method("plot", cepa)
+export("plot.cepa")
+S3method("plot", cepa.all)
+export("plot.cepa.all")
+S3method("plot", pathway.catalogue)
+export("plot.pathway.catalogue")
+S3method("print", cepa)
+export("print.cepa")
+S3method("print", cepa.all)
+export("print.cepa.all")
+S3method("print", pathway.catalogue)
+export("print.pathway.catalogue")
+export('cepa.all')
+export('cepa.all.parallel')
+export('cepa.ora')
+export('cepa.ora.all')
+export('cepa.univariate')
+export('cepa.univariate.all')
+export('generate.pathway')
+export('get.cepa')
+export('p.table')
+export('pathway.nodes')
+export('read.cls')
+export('read.gct')
+export('set.pathway.catalogue')
+export(cepa)
+export(plotGraph)
+export(plotNull)
+export(radiality)
+export(reach)
+export(report)
+export(sampleLabel)
+export(spread)
+
+import(igraph)
+importFrom("Rgraphviz", "layoutGraph", "renderGraph")
+importFrom("grDevices", "cm", "col2rgb", "dev.off", "png", "rgb")
+importFrom("graph", "nodeRenderInfo<-")
+importFrom("graphics", "abline", "box", "hist", "layout", "lcm", "legend", "matplot", "par", "plot", "points", "polygon", "rect", "segments", "text")
+importFrom("methods", "new")
+importFrom("snow", "makeCluster", "clusterCall", "clusterApply", "stopCluster")
+importFrom("stats", "median", "p.adjust", "prcomp", "predict", "quantile", "rbinom", "runif", "var", "wilcox.test")
+importFrom("utils", "read.table", "write.table")
+

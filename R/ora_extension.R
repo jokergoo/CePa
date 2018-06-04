@@ -1,6 +1,51 @@
 
-# centraliy extension on Over-representative analysis method
-# on a list of pathways and under several centralities
+# == title
+# Apply centrality-extented ORA on a list of pathways
+#
+# == param
+# -dif differential gene list
+# -pc a ``pathway.catalogue`` class object
+# -bk background gene list. If background gene list are not specified, use whole human genes
+# -cen centrality measuments, it can ce a string, or a function
+# -cen.name centrality measurement names. By default it is parsed from ``cen`` argument
+# -iter number of simulations
+#
+# == details
+# The traditional over-representation analysis (ORA) to find significant pathways 
+# uses a 2x2 contingency table to test the independency of genes belonging to a 
+# functional category and these genes being differentially expressed, usually by 
+# Fisher's exact test. The ORA only consider the number of genes and the function
+# extend traditional ORA with network centralities.
+#
+# The differential gene list and the background gene list should be indicated
+# with the same identifiers (e.g. gene symbol or refseq ID). All genes in
+# the differential gene list should exist in the background gene list. If users 
+# use the `PID.db` data, all genes should be formatted in gene symbol.
+#
+# If the centrality measurement is set as a string, only pre-defined "equal.weight",
+# "in.degree", "out.degree", "degree", "betweenness", "in.reach", "out.reach",
+# "reach", "in.spread", "out.spread" and "spread" are allowed. More centrality
+# measurements can be used by setting it as a function (such as closeness,
+# cluster coefficient). In the function, we recommand users choose
+# at least two centrality measurements. The default centralities are "equal.weight",
+# "in.degree", "out.degree", "betweenness", "in.reach" and "out.reach".
+#
+# However, in most circumstance, the function is called by `cepa.all`.
+#
+# == value
+# A `cepa.all` class object
+#
+# == author
+# Zuguang Gu <z.gu@dkfz.de>
+# 
+# == example
+# \dontrun{
+# data(PID.db)
+# # ORA extension
+# data(gene.list)
+# # will spend about 20 min
+# res.ora = cepa.ora.all(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI)
+# }
 cepa.ora.all = function(dif, pc, bk = NULL, cen = default.centralities,
     cen.name = sapply(cen, function(x) ifelse(mode(x) == "name", deparse(x), x)), 
     iter = 1000) {
@@ -79,10 +124,45 @@ cepa.ora.all = function(dif, pc, bk = NULL, cen = default.centralities,
     return(pathway.result)
 }
 
-# apply centrality-extension of Over-representative analysis method
-# on a single pathway and a single centrality
+# == title
+# Apply centrality-extended ORA on a single pathway
+#
+# == param
+# -dif differential gene list
+# -pc a ``pathway.catalogue`` class object
+# -bk background gene list. If background gene list are not specified, use whole human genes
+# -pathway `igraph::igraphtest` object or edge list
+# -id identify which pathway in the catalogue
+# -cen centrality measuments, it can ce a string, function, or function that has been quoted
+# -cen.name centrality measurement names. This argument should be set if the ``cen`` is a function.
+# -iter number of simulations
+#
+# == details
+# The function is always called by `cepa.ora.all`. But you can still
+# use it if you realy want to analysis just one pathway under one centrality.
+#
+# == value
+# A ``cepa`` class object
+#
+# == author
+# Zuguang Gu <z.gu@dkfz.de>
+#
+# == seealso
+# `cepa.all`
+#
+# == example
+# \dontrun{
+# data(PID.db)
+#
+# # ORA extension
+# data(gene.list)
+# # will spend about 20 min
+# res.ora = cepa(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI, id = 2)
+# }
 cepa.ora = function(dif, pc, bk = NULL, pathway = NULL, id = NULL, cen = "equal.weight",
-                cen.name = if(is.function(cen)) deparse(substitute(cen)) else if(mode(cen) == "name") deparse(cen) else cen,
+                cen.name = if(is.function(cen)) deparse(substitute(cen)) 
+                           else if(mode(cen) == "name") deparse(cen) 
+                           else cen,
                 iter = 1000) {
     
     # if no background gene list is specified, use whole human genome

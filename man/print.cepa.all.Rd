@@ -1,23 +1,29 @@
 \name{print.cepa.all}
 \alias{print.cepa.all}
-\title{print the cepa.all object}
+\title{
+print the cepa.all object
+}
 \description{
 print the cepa.all object
 }
 \usage{
-\method{print}{cepa.all}(x, ...)                        
+\method{print}{cepa.all}(x, ...)
 }
 \arguments{
-  \item{x}{a \link{cepa.all} object}
+
+  \item{x}{a \code{\link{cepa.all}} object}
   \item{...}{other arguments}
+
 }
 \details{
 The function print the number of significant pathways under various
 centrality measures at p-value <= 0.01.
 }
-\author{Zuguang Gu}
 \seealso{
 \code{\link{cepa.all}}
+}
+\author{
+Zuguang Gu <z.gu@dkfz.de>
 }
 \examples{
 \dontrun{

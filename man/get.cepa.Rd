@@ -1,24 +1,30 @@
 \name{get.cepa}
 \alias{get.cepa}
-\title{get single cepa object from cepa.all object}
+\title{
+get single cepa object from cepa.all object
+}
 \description{
 get single cepa object from cepa.all object
 }
 \usage{
-get.cepa(x, id = NULL, cen = 1)    
+get.cepa(x, id = NULL, cen = 1)
 }
 \arguments{
-  \item{x}{a \link{cepa.all} object}
+
+  \item{x}{a \code{\link{cepa.all}} object}
   \item{id}{index or the name of the pathway}
   \item{cen}{index or the name of the centrality}
+
 }
 \details{
-The \code{cepa.all} object contains the result for pathways under several centrality
-measurements. In \code{cepa.all} object, each pathway under a specific centrality
-is a single \code{cepa} object. The \code{get.cepa} is used to get the \code{cepa}
-object from the \code{cepa.all} object.
+The `cepa.all object contains the result for pathways under several centrality
+measurements. In \code{\link{cepa.all}} object, each pathway under a specific centrality
+is a single \code{\link{cepa}} object. The \code{\link{get.cepa}} function is used to get the \code{\link{cepa}}
+object from the \code{\link{cepa.all}} object.
 }
-\author{Zuguang Gu}
+\author{
+Zuguang Gu <z.gu@dkfz.de>
+}
 \seealso{
 \code{\link{cepa}}, \code{\link{cepa.all}}
 }

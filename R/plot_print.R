@@ -37,6 +37,33 @@
 # 
 # == seealso
 # `cepa.all`
+#
+# == author
+# Zuguang Gu <z.gu@dkfz.de>
+#
+# == example
+# \dontrun{
+# data(PID.db)
+#
+# # ORA extension
+# data(gene.list)
+# # will spend about 20 min
+# res.ora = cepa.all(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI)
+# plot(res.ora)
+# plot(res.ora, id = 3)
+# plot(res.ora, id = 3, type = "null")
+#
+# # GSA extension
+# # P53_symbol.gct and P53_cls can be downloaded from
+# # http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+# eset = read.gct("P53_symbol.gct")
+# label = read.cls("P53.cls", treatment="MUT", control="WT")
+# # will spend about 45 min
+# res.gsa = cepa.all(mat = eset, label = label, pc = PID.db$NCI)
+# plot(res.gsa)
+# plot(res.gsa, id = 3, cen = 2)
+# plot(res.gsa, id = 3, cen = 2, type = "null")
+# }
 plot.cepa.all = function(x, id = NULL, cen = 1, type = c("graph", "null"), tool = c("igraph", "Rgraphviz"),
                         node.name = NULL, node.type = NULL,
                         adj.method = "none", only.sig = FALSE,
@@ -64,6 +91,24 @@ plot.cepa.all = function(x, id = NULL, cen = 1, type = c("graph", "null"), tool 
         p.heatmap(x, adj.method = adj.method, only.sig = only.sig, cutoff = cutoff)
     }
 }
+
+
+# #
+# # ###########################################################
+# # # 
+# # #     write a new p.adjust to supprot qvalue
+# # #
+# library(qvalue)
+# p.adjust = function(p, method = c("holm", "hochberg", "hommel", "bonferroni",
+#                     "BH", "BY", "fdr", "none", "qvalue"), ...) {
+#     if(method == "qvalue") {
+#         # qvalue has more arguments, pass them by ...
+#         qvalue(p, ...)$qvalue
+#     } else {
+#         stats::p.adjust(p, method)
+#     }
+# }
+# }
 
 
 p.heatmap = function(x, adj.method = "none", only.sig = TRUE,
@@ -231,6 +276,29 @@ get_color = function(x,
 #
 # == seealso
 # `cepa.all`
+#
+# == author
+# Zuguang Gu <z.gu@dkfz.de>
+#
+# == example
+# \dontrun{
+# data(PID.db)
+#
+# # ORA extension
+# data(gene.list)
+# # will spend about 20 min
+# res.ora = cepa.all(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI)
+# res.ora
+#
+# # GSA extension
+# # P53_symbol.gct and P53_cls can be downloaded from
+# # http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+# eset = read.gct("P53_symbol.gct")
+# label = read.cls("P53.cls", treatment="MUT", control="WT")
+# # will spend about 45 min
+# res.gsa = cepa.all(mat = eset, label = label, pc = PID.db$NCI)
+# res.gsa
+# }
 print.cepa.all = function(x, ...) {
     cat("\n")
     cat("number of pathways:", length(x), "\n")
@@ -252,7 +320,7 @@ print.cepa.all = function(x, ...) {
 }
 
 # == title
-#   Plot the cepa object
+# Plot the cepa object
 #
 # == param
 # -x    a `cepa` object
@@ -268,8 +336,33 @@ print.cepa.all = function(x, ...) {
 # == return
 # if type is set to "graph", the function will return a `igraph::igraph` object or a ``graphML`` object of the pathway. Else it is NULL.
 #
+# == author
+# Zuguang Gu <z.gu@dkfz.de>
+#
 # == seealso
 # `cepa`, `plotNull`, `plotGraph`
+#
+# == example
+# \dontrun{
+#
+# data(PID.db)
+#
+# # ORA extension
+# data(gene.list)
+# # will spend about 20 min
+# res.ora = cepa(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI, id = 2)
+# plot(res.ora)
+# plot(res.ora, type = "null")
+#
+# # GSA extension
+# # P53_symbol.gct and P53_cls can be downloaded from
+# # http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+# eset = read.gct("P53_symbol.gct")
+# label = read.cls("P53.cls", treatment="MUT", control="WT")
+# # will spend about 45 min
+# res.gsa = cepa(mat = eset, label = label, pc = PID.db$NCI, id = 2)
+# plot(res.gsa, type = "null")
+# }
 plot.cepa = function(x, type = c("graph", "null"), ...) {
     type = type[1]
     if(type == "graph") {
@@ -297,8 +390,33 @@ plot.cepa = function(x, type = c("graph", "null"), ...) {
 #
 # The function is always called through `plot.cepa.all` and `plot.cepa`.
 #
+# == author
+# Zuguang Gu <z.gu@dkfz.de>
+#
 # == seealso
 # `cepa`, `plot.cepa`
+#
+# == example
+# \dontrun{
+# data(PID.db)
+#
+# # ORA extension
+# data(gene.list)
+# # will spend about 20 min
+# res.ora = cepa.all(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI)
+# ora = get.cepa(res.ora, id = 5, cen = 3)
+# plotNull(ora)
+#
+# # GSA extension
+# # P53_symbol.gct and P53_cls can be downloaded from
+# # http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+# eset = read.gct("P53_symbol.gct")
+# label = read.cls("P53.cls", treatment="MUT", control="WT")
+# # will spend about 45 min
+# res.gsa = cepa.all(mat = eset, label = label, pc = PID.db$NCI)
+# gsa = get.cepa(res.gsa, id = 5, cen = 3)
+# plotNull(gsa)
+# }
 plotNull = function(x) {
     s = x$score
     s.random = x$score.random
@@ -387,8 +505,32 @@ plotNull = function(x) {
 #
 # == return
 # A `igraph::igraph` object of the pathway
-plotGraph = function(x, node.name = NULL, node.type = NULL, draw = TRUE, tool = c("igraph", "Rgraphviz"),
-                     graph.node.max.size = 20, graph.node.min.size = 3, graph.layout.method = NULL) {
+#
+# == author
+# Zuguang Gu <z.gu@dkfz.de>
+#
+# == example
+# \dontrun{
+# data(PID.db)
+# # ORA extension
+# data(gene.list)
+# # will spend about 20 min
+# res.ora = cepa.all(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI)
+# ora = get.cepa(res.ora, id = 5, cen = 3)
+# plotGraph(ora)
+# # GSA extension
+# # P53_symbol.gct and P53_cls can be downloaded from
+# # http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+# eset = read.gct("P53_symbol.gct")
+# label = read.cls("P53.cls", treatment="MUT", control="WT")
+# # will spend about 45 min
+# res.gsa = cepa.all(mat = eset, label = label, pc = PID.db$NCI)
+# gsa = get.cepa(res.gsa, id = 5, cen = 3)
+# plotGraph(gsa)
+# }
+plotGraph = function(x, node.name = NULL, node.type = NULL, draw = TRUE, 
+    tool = c("igraph", "Rgraphviz"), graph.node.max.size = 20, 
+    graph.node.min.size = 3, graph.layout.method = NULL) {
     
     tool = tool[1]
     if(! tool %in% c("igraph", "Rgraphviz")) {
@@ -467,8 +609,10 @@ plotGraph = function(x, node.name = NULL, node.type = NULL, draw = TRUE, tool = 
         v.label = gsub("/", "\n", v.label)
     }
     
-    v.size[is.asistNode(node.id)] = min.size
-    v.color[is.asistNode(node.id)] = "#CCCCCC"
+    if(! is.null(node.type)) {
+        v.size[node.type == "asist.node"] = min.size
+        v.color[node.type == "asist.node"] = "#CCCCCC"
+    }
 
     V(pathway)$shape = "circle"
     V(pathway)$color = v.color
@@ -493,9 +637,9 @@ plotGraph = function(x, node.name = NULL, node.type = NULL, draw = TRUE, tool = 
         layout.method = graph.layout.method
     }
     
-    opar = par(no.readonly = TRUE)
+    opar = par(c("mar", "xpd"))
     
-    layout(cbind(1:2, 3:4), heights = c(9,cm(0.5)), widths = c(9, cm(0.5)))
+    layout(cbind(1:2, 3:4), heights = c(9,cm(1)), widths = c(9, cm(0)))
     if(tool == "igraph") {
         plot.igraph2(pathway, layout.method=layout.method)
     } else if(tool == "Rgraphviz") {
@@ -692,8 +836,32 @@ reedge = function(x1, y1, x2, y2, r1, r2) {
 # == details
 # The function print procedure of the analysis, the centrality and the p-value for the pathway.
 #
+# == author
+# Zuguang Gu <z.gu@dkfz.de>
+# 
 # == seealso
 # `cepa`
+#
+# == example
+# \dontrun{
+#
+# data(PID.db)
+#
+# # ORA extension
+# data(gene.list)
+# # will spend about 20 min
+# res.ora = cepa(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI, id = 2)
+# res.ora
+#
+# # GSA extension
+# # P53_symbol.gct and P53_cls can be downloaded from
+# # http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+# eset = read.gct("P53_symbol.gct")
+# label = read.cls("P53.cls", treatment="MUT", control="WT")
+# # will spend about 45 min
+# res.gsa = cepa(mat = eset, label = label, pc = PID.db$NCI, id = 2)
+# res.gsa
+# }
 print.cepa = function(x, ...) {
     cat("\n")
     cat("  procedure:", x$framework, "\n")
@@ -715,6 +883,7 @@ plotByRGraphviz = function(g, draw = TRUE) {
     g2 = new("graphAM", m, edgemode = "directed")
     node = V(g)$name
     node.size = V(g)$size
+
     if(max(node.size) == min(node.size)) {
         node.size = rep(0.5, length(node.size)) 
     } else {
@@ -728,7 +897,8 @@ plotByRGraphviz = function(g, draw = TRUE) {
     node.label = V(g)$label
     names(node.label) = node
     node.shape = rep("circle", length(node))
-    node.shape[is.asistNode(node)] = "circle"
+    node.shape[node.color == "#CCCCCC"] = "circle"
+    
     names(node.shape) = node
     
     fix = rep(FALSE, length(node))

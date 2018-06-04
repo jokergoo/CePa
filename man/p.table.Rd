@@ -1,6 +1,8 @@
 \name{p.table}
 \alias{p.table}
-\title{Table of p-values of pathways}
+\title{
+Table of p-values of pathways
+}
 \description{
 Table of p-values of pathways
 }
@@ -8,9 +10,11 @@ Table of p-values of pathways
 p.table(x, adj.method = NA, cutoff = ifelse(adj.method == "none", 0.01, 0.05))
 }
 \arguments{
-  \item{x}{a \link{cepa.all} object}
-  \item{adj.method}{methods in \link[stats]{p.adjust}, available methods are "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none"}
+
+  \item{x}{a \code{\link{cepa.all}} object}
+  \item{adj.method}{methods in \code{\link[stats]{p.adjust}}, available methods are "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none"}
   \item{cutoff}{cutoff for significance}
+
 }
 \details{
 Since the p-values for each pathway are calculated for several centralities, the
@@ -21,7 +25,9 @@ Also it can extract significant pathways only.
 \value{
 A data matrix where rows are pathways and columns are centralities.
 }
-\author{Zuguang Gu}
+\author{
+Zuguang Gu <z.gu@dkfz.de>
+}
 \seealso{
 \code{\link{cepa.all}}
 }

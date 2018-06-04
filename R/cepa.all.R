@@ -1,10 +1,74 @@
 
-# wrapper of cepa.ora.all, cepa.univariate.all
-# choose corresponding fucntions according to the arguments
-# arguments for cepa.ora.all:
-#   dif, bk, pc, cen, cen.name, iter
-# arguments for cepa.univariate.all:
-#   mat, label, pc, cen, cen.name, nlevel, plevel, iter
+# == title
+# Apply CePa algorithm on a list of pathways under multiple centralities
+#
+# == param
+# -dif differential gene list
+# -bk background gene list. If background gene list are not specified, use whole human genes
+# -mat expression matrix in which rows are genes and columns are samples
+# -label a `sampleLabel` object identify the design of the microarray experiment
+# -pc a ``pathway.catalogue`` object storing information of pathways
+# -cen centrality measuments, it can ce a string, or a function
+# -cen.name centrality measurement names. By default it is parsed from ``cen`` argument
+# -nlevel node level transformation, should be one of "tvalue", "tvalue_sq", "tvalue_abs".
+#                Also self-defined functions are allowed, see `cepa.univariate.all` for detail.
+# -plevel pathway level transformation, should be one of "max", "min", "median", "sum", "mean", "rank".
+#                Also, self-defined functions are allowed, see `cepa.univariate.all` for detail.
+# -iter number of simulations
+#
+# == details
+# All the calculation can be achieved by this function. The function is wrapper of 
+# both ORA extension and GSA extension. It chooses corresponding procedure according 
+# to the arguments specified. If the arguments contain gene lists, then the calculation 
+# is sent to functions doing ORA extension. While if the arguments contain an expression 
+# matrix and a phenotype label, the GSA extension is evoked. 
+#
+# The function is a wrapper of `cepa.ora.all` and `cepa.univariate.all`.
+#
+# This is the core function of the package. User can refer to the vignette to find
+# how to use it (``vignette("CePa")``).
+#
+# If ``dif``, ``bk``, ``pc``, ``cen``, ``cen.name`` and ``iter``
+# are specified, the arguments are passed to ``cepa.ora.all``. The centrality-extension 
+# of over-representation analysis (ORA) will be applied on the list of differential genes.
+#
+# If ``mat``, ``label``, ``pc``, ``cen``, ``cen.name``, ``nlevel``,
+# ``plevel`` and ``iter`` are specified, the arguments are passed to ``cepa.univariate.all``.
+# The centrality-extension of gene-set analysis (GSA) will be applied on the whole gene expressions.
+#
+# There is a parallel version of the function: `cepa.all.parallel`.
+#
+# == value
+# A `cepa.all` class object
+#
+# == reference
+# Gu Z, Liu J, Cao K, Zhang J, Wang J. Centrality-based pathway enrichment: a systematic 
+# approach for finding significant pathways dominated by key genes. BMC Syst Biol. 2012 Jun 6;6(1):56.
+#
+# == author
+# Zuguang Gu <z.gu@dkfz.de>
+#
+# == seealso
+# `cepa`, `cepa.ora.all`, `cepa.univariate.all`, `cepa.all.parallel`
+#
+# == examples
+# \dontrun{
+#
+# data(PID.db)
+#
+# # ORA extension
+# data(gene.list)
+# # will spend about 20 min
+# res.ora = cepa.all(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI)
+#
+# # GSA extension
+# # P53_symbol.gct and P53_cls can be downloaded from
+# # http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+# eset = read.gct("http://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53_symbol.gct")
+# label = read.cls("http://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53.cls", treatment="MUT", control="WT")
+# # will spend about 45 min
+# res.gsa = cepa.all(mat = eset, label = label, pc = PID.db$NCI)
+# }
 cepa.all = function(dif = NULL, bk = NULL, mat = NULL, label = NULL, pc, cen = default.centralities,
     cen.name = sapply(cen, function(x) ifelse(mode(x) == "name", deparse(x), x)), 
     nlevel = "tvalue_abs", plevel = "mean", iter = 1000 ) {
@@ -35,14 +99,71 @@ cepa.all = function(dif = NULL, bk = NULL, mat = NULL, label = NULL, pc, cen = d
 }
 
 
-# wrapper of cepa.ora, cepa.univariate, cepa.multivariate
-# choose corresponding fucntions according to the arguments
-# arguments for cepa.ora:
-#   dif, bk, pc, pathway, id, cen, cen.name, iter
-# arguments for cepa.univariate:
-#   mat, label, pc, pathway, id, cen, cen.name, nlevel, nlevel, plevel, iter, gene.level, r.gene.level
-cepa = function(dif = NULL, bk = NULL, mat = NULL, label = NULL, pc, pathway = NULL, id = NULL, cen = "equal.weight",
-    cen.name = if(is.function(cen)) deparse(substitute(cen)) else if(mode(cen) == "name") deparse(cen) else cen,
+# == title
+# Apply CePa algorithm on a single pathway
+#
+# == param
+# -dif differential gene list
+# -bk background gene list. If background gene list are not specified, use whole human genes
+# -mat expression matrix in which rows are genes and columns are samples
+# -label a `sampleLabel` object identify the design of the microarray experiment
+# -pc a ``pathway.catalogue`` object storing information of pathways
+# -pathway an `igraph::igraphtest` object or edge list
+# -id identify which pathway should be analysis in the pathway catalogue
+# -cen centrality measuments, it can ce a string, or function has been quote
+# -cen.name centrality measurement names. This argument should be set if the ``cen`` is a function.
+# -nlevel node level transformation, should be one of "tvalue", "tvalue_sq", "tvalue_abs".
+#                 Also self-defined functions are allowed, see `cepa.univariate` for detail.
+# -plevel pathway level transformation, should be one of "max", "min", "median", "sum", "mean", "rank".
+#                 Also, self-defined functions are allowed, see `cepa.univariate` for detail.
+# -iter number of simulations
+#
+# == details
+# The function is a wrapper of `cepa.ora` and `cepa.univariate`.
+# Selection of which function depends on the arguments specified.
+#
+# If ``dif``, ``bk``, ``pc``, ``pathway``, ``id``, ``cen``, ``cen.name`` and ``iter``
+# are specified, the arguments are passed to `cepa.ora`. The centrality-extension 
+# of over-representation analysis (ORA) will be applied on the list of differential genes.
+#
+# If ``mat``, ``label``, ``pc``, ``pathway``, ``id``, ``cen``, ``cen.name``, ``nlevel``,
+# ``plevel`` and ``iter`` are specified, the arguments are passed to `cepa.univariate`.
+# The centrality-extension of gene-set analysis (GSA) will be applied on the whole gene expressions.
+#
+# This function is always called by `cepa.all`. But you can still use it
+# if you want to analysis a single pathway under a specific centrality.
+#
+# == value
+# A `cepa` class object
+#
+# == seealso
+# `cepa.all`
+#
+# == author
+# Zuguang Gu <z.gu@dkfz.de>
+#
+# == example
+# \dontrun{
+#
+# data(PID.db)
+#
+# # ORA extension
+# data(gene.list)
+# # will spend about 20 min
+# res.ora = cepa(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI, id = 2)
+#
+# # GSA extension
+# # P53_symbol.gct and P53_cls can be downloaded from
+# # http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+# eset = read.gct("P53_symbol.gct")
+# label = read.cls("P53.cls", treatment="MUT", control="WT")
+# # will take about 45 min
+# res.gsa = cepa(mat = eset, label = label, pc = PID.db$NCI, id = 2)
+# }
+cepa = function(dif = NULL, bk = NULL, mat = NULL, label = NULL, pc, pathway = NULL, 
+    id = NULL, cen = "equal.weight",
+    cen.name = if(is.function(cen)) deparse(substitute(cen)) 
+               else if(mode(cen) == "name") deparse(cen) else cen,
     nlevel = "tvalue_abs", plevel = "mean", iter = 1000) {
     
     # if the first argument is a vector, then it is ora method
@@ -112,7 +233,64 @@ combine.cepa.all = function(res) {
     return(obj)
 }
 
-cepa.all.parallel = function(dif = NULL, bk = NULL, mat = NULL, label = NULL, pc, cen = default.centralities,
+# == title
+# use CePa package through parallel computing
+#
+# == param
+# -dif differential gene list
+# -bk background gene list. If background gene list are not specified, use whole human genes
+# -mat expression matrix in which rows are genes and columns are samples
+# -label a `sampleLabel` object identify the design of the microarray experiment
+# -pc a ``pathway.catalogue`` object storing information of pathways
+# -cen centrality measuments, it can ce a string, or a function
+# -cen.name centrality measurement names. By default it is parsed from ``cen`` argument
+# -nlevel node level transformation, should be one of "tvalue", "tvalue_sq", "tvalue_abs".
+#             Also self-defined functions are allowed, see `cepa.univariate.all` for detail.
+# -plevel pathway level transformation, should be one of "max", "min", "median", "sum", "mean", "rank".
+#             Also, self-defined functions are allowed, see `cepa.univariate.all` for detail.
+# -iter number of simulations
+# -ncores number of cores for parallel computing
+#
+# == details
+# The function divides the pathway list into several parts and each part is sent to a core for 
+# parallel computing.
+#
+# The package for parallel computing is \code{snow}.
+#
+# Note: there may be warnings saying connections not closed. In fact I have closed
+# connections after the parallel computing is done. I don't know why this
+# happens. Maybe you breaked the computing ahead manually. However it does not matter 
+# unless you have obsessive compulsive disorder.
+#
+# == value
+# A `cepa.all` class object
+#
+# == reference
+# Gu Z, Liu J, Cao K, Zhang J, Wang J. Centrality-based pathway enrichment: a systematic 
+# approach for finding significant pathways dominated by key genes. BMC Syst Biol. 2012 Jun 6;6(1):56.
+#
+# == author
+# Zuguang Gu <z.gu@dkfz.de>
+#
+# == seealso
+# cepa.all
+#
+# == example
+# \dontrun{
+# data(PID.db)
+# # ORA extension
+# data(gene.list)
+# res.ora = cepa.all.parallel(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI, ncores = 4)
+# # GSA extension
+# # P53_symbol.gct and P53_cls can be downloaded from
+# # http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+# eset = read.gct("http://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53_symbol.gct")
+# label = read.cls("http://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53.cls", 
+#     treatment="MUT", control="WT")
+# res.gsa = cepa.all.parallel(mat = eset, label = label, pc = PID.db$NCI, ncores = 4)
+# }
+cepa.all.parallel = function(dif = NULL, bk = NULL, mat = NULL, label = NULL, 
+    pc, cen = default.centralities, 
     cen.name = sapply(cen, function(x) ifelse(mode(x) == "name", deparse(x), x)), 
     nlevel = "tvalue_abs", plevel = "mean", iter = 1000, ncores = 2) {
     

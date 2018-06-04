@@ -1,27 +1,33 @@
 \name{plot.cepa}
 \alias{plot.cepa}
-\title{Plot the cepa object}
+\title{
+Plot the cepa object
+}
 \description{
 Plot the cepa object
 }
 \usage{
-\method{plot}{cepa}(x, type = c("graph", "null"), ...)                 
+\method{plot}{cepa}(x, type = c("graph", "null"), ...)
 }
 \arguments{
-  \item{x}{a \link{cepa} object}
+
+  \item{x}{a \code{\link{cepa}} object}
   \item{type}{identify the type for the plot}
   \item{...}{arguments passed to \code{\link{plotGraph}}}
+
 }
 \details{
 The function is wrapper of \code{\link{plotGraph}} and \code{\link{plotNull}}.
-If type is specified to "graph", the graph of the network will be plotted (see \link{plotGraph} for details).
+If type is specified to "graph", the graph of the network will be plotted (see \code{\link{plotGraph}} for details).
 If type is specified to "null", the null distribution of the pathway score
-in the pathway will be plotted (see \link{plotNull} for details).
+in the pathway will be plotted (see \code{\link{plotNull}} for details).
 }
 \value{
-if type is set to "graph", the function will return a \link[igraph]{igraph} object of the pathway. Else it is NULL.
+if type is set to "graph", the function will return a \code{\link[igraph]{igraph}} object or a \code{graphML} object of the pathway. Else it is NULL.
 }
-\author{Zuguang Gu}
+\author{
+Zuguang Gu <z.gu@dkfz.de>
+}
 \seealso{
 \code{\link{cepa}}, \code{\link{plotNull}}, \code{\link{plotGraph}}
 }

@@ -1,4 +1,46 @@
-# p values of all pathways
+# == title
+# Table of p-values of pathways
+#
+# == param
+# -x a `cepa.all` object
+# -adj.method methods in `stats::p.adjust`, available methods are "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none"
+# -cutoff cutoff for significance
+#
+# == details
+# Since the p-values for each pathway are calculated for several centralities, the
+# whole p-values are represented as a table.
+#
+# Also it can extract significant pathways only.
+#
+# == value
+# A data matrix where rows are pathways and columns are centralities.
+#
+# == author
+# Zuguang Gu <z.gu@dkfz.de>
+#
+# == seealso
+# `cepa.all`
+#
+# == example
+# \dontrun{
+# data(PID.db)
+#
+# # ORA extension
+# data(gene.list)
+# # will spend about 20 min
+# res.ora = cepa.all(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI)
+# p.table(res.ora)
+# p.table(res.ora, adj.method = "BH")
+#
+# # GSA extension
+# # P53_symbol.gct and P53_cls can be downloaded from
+# # http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+# eset = read.gct("P53_symbol.gct")
+# label = read.cls("P53.cls", treatment="MUT", control="WT")
+# # will spend about 45 min
+# res.gsa = cepa.all(mat = eset, label = label, pc = PID.db$NCI)
+# p.table(res.gsa)
+# }
 p.table = function(x, adj.method = NA, cutoff = ifelse(adj.method == "none", 0.01, 0.05)) {
 
     if(class(x) != "cepa.all") {
@@ -23,7 +65,45 @@ p.table = function(x, adj.method = NA, cutoff = ifelse(adj.method == "none", 0.0
     return(p.value)
 }
 
-# return cepa object
+# == title
+# get single cepa object from cepa.all object
+#
+# == param
+# -x a `cepa.all` object
+# -id index or the name of the pathway
+# -cen index or the name of the centrality
+#
+# == details
+# The `cepa.all object contains the result for pathways under several centrality
+# measurements. In `cepa.all` object, each pathway under a specific centrality
+# is a single `cepa` object. The `get.cepa` function is used to get the `cepa`
+# object from the `cepa.all` object.
+#
+# == author
+# Zuguang Gu <z.gu@dkfz.de>
+#
+# == seealso
+# `cepa`, `cepa.all`
+#
+# == example
+# \dontrun{
+# data(PID.db)
+#
+# # ORA extension
+# data(gene.list)
+# # will spend about 20 min
+# res.ora = cepa.all(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI)
+# ora = get.cepa(res.ora, id = 5, cen = 3)
+#
+# # GSA extension
+# # P53_symbol.gct and P53_cls can be downloaded from
+# # http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+# eset = read.gct("P53_symbol.gct")
+# label = read.cls("P53.cls", treatment="MUT", control="WT")
+# # will spend about 45 min
+# res.gsa = cepa.all(mat = eset, label = label, pc = PID.db$NCI)
+# gsa = get.cepa(res.gsa, id = 5, cen = 3)
+# }
 get.cepa = function(x, id = NULL, cen = 1) {
     
     if(class(x) != "cepa.all") {

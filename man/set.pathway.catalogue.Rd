@@ -1,26 +1,26 @@
 \name{set.pathway.catalogue}
 \alias{set.pathway.catalogue}
-\alias{pathway.catalogue}
-\title{store pathway data and pre-processing}
+\title{
+store pathway data and pre-processing
+}
 \description{
 store pathway data and pre-processing
 }
 \usage{
 set.pathway.catalogue(pathList, interactionList, mapping,
-    min.node = 5, max.node = 500, min.gene = min.node, max.gene = max.node,
-    ...)    
+    min.node = 5, max.node = 500, min.gene = min.node, max.gene = max.node, ...)
 }
 \arguments{
+
   \item{pathList}{list of pathways}
   \item{interactionList}{list of interactions}
-  \item{mapping}{a data frame or matrix providing mappings from gene id to pathway node id. 
-  The first column is node id and the second column is gene id.}
+  \item{mapping}{a data frame or matrix providing mappings from gene id to pathway node id.  The first column is node id and the second column is gene id.}
   \item{min.node}{minimum number of connected nodes in each pathway}
   \item{max.node}{maximum number of connected nodes in each pathway}
   \item{min.gene}{minimum number of genes in each pathway}
   \item{max.gene}{maximum number of genes in each pathway}
-  \item{...}{other arguments, should have names, these data will be stored as
-  a list member in the returned value from the function}
+  \item{...}{other arguments, should have names, these data will be stored as a list member in the returned value from the function}
+
 }
 \details{
 The pathway data will not be changed in the analysis, so the pathway data is integrated
@@ -47,16 +47,17 @@ there are also node.name, node.type and version arguments.
 The summary can be visualized by \code{\link{plot.pathway.catalogue}}.
 }
 \value{
-    A \code{pathway.catalogue} class object
+A \code{pathway.catalogue} class object
 }
-\author{Zuguang Gu}
+\author{
+Zuguang Gu <z.gu@dkfz.de>
+}
 \seealso{
 \code{\link{cepa.all}}
 }
 \examples{
 \dontrun{
 data(PID.db)
-
 catalogue = set.pathway.catalogue(pathList = PID.db$NCI$pathList[1:20],
             interactionList = PID.db$NCI$intertionList, mapping = PID.db$NCI$mapping)
 }

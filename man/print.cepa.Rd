@@ -1,20 +1,28 @@
 \name{print.cepa}
 \alias{print.cepa}
-\title{print the cepa object}
+\title{
+\preformatted{
+  print the cepa object  }
+}
 \description{
-print the general description of a cepa object
+\preformatted{
+  print the cepa object  }
 }
 \usage{
-\method{print}{cepa}(x, ...)                     
+\method{print}{cepa}(x, ...)
 }
 \arguments{
-  \item{x}{a \link{cepa} object}
+
+  \item{x}{a \code{\link{cepa}} object}
   \item{...}{other arguments}
+
 }
 \details{
 The function print procedure of the analysis, the centrality and the p-value for the pathway.
 }
-\author{Zuguang Gu}
+\author{
+Zuguang Gu <z.gu@dkfz.de>
+}
 \seealso{
 \code{\link{cepa}}
 }

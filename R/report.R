@@ -1,5 +1,53 @@
+
+# == title
+# Generate report for CePa analysis
+#
+# == param
+# -x a `cepa.all` object
+# -adj.method methods in `stats::p.adjust`, available methods are "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none"
+# -cutoff cutoff for significance
+# -template.file path of the template file
+# -only.sig whether to generate detailed report for every pathway.
+#   If it is set to FALSE, the page for every pathway under every centrality
+#   would be generated (there would be so many images!).
+# -dir.path dir name
+# -... other arguments
+#
+# == details
+# The report is in HTML format that you can view it in you web browser. Networks
+# for pathways can be visualized interactively (by using Cytoscape Web, in which 
+# you can drag the network, zoom in and zoom out the network). To load Flash Player
+# successful in you browser, you may need to set the Flash security settings on your
+# machine. See http://cytoscapeweb.cytoscape.org/tutorial and change the settings
+# via http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html .
+#  
+# The report would locate at the current working directory. View the report
+# by clicking ``index.html`` in the report directory.
+#
+# There is also another popular method qvalue to adjust p-values. Turn to `plot.cepa.all`
+# to find out how to use qvalue.
+#
+# == source
+# http://cytoscapeweb.cytoscape.org/
+#
+# == author
+# Zuguang Gu <z.gu@dkfz.de>
+#
+# == seealso
+# `cepa.all`
+#
+# == example
+# \dontrun{
+# data(PID.db)
+#
+# # ORA extension
+# data(gene.list)
+# # will spend about 20 min
+# res.ora = cepa.all(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI)
+# report(res.ora)
+# }
 report = function(x, adj.method = "none", cutoff = ifelse(adj.method == "none", 0.01, 0.05), 
-          template.file = paste(system.file(package = "CePa"), "/extdata/cepa.template", sep=""),
+          template.file = system.file(package = "CePa", "extdata", "cepa.template"),
           only.sig = TRUE, dir.path = NULL, ...) {
     
     if(is.null(dir.path)) {
@@ -183,6 +231,7 @@ template = function(text, replacement, code.pattern = NULL) {
 
     # import variables in replacement
     attach(replacement, warn.conflicts = FALSE)
+    on.exit(detach(replacement))
 
     for (i in 1:length(lines)) {
 
@@ -228,7 +277,7 @@ template = function(text, replacement, code.pattern = NULL) {
         }
     }
 
-    detach(replacement)
+    
 
     return(paste(newlines, collapse="\n"))
 }

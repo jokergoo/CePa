@@ -1,28 +1,35 @@
 \name{plotNull}
 \alias{plotNull}
-\title{Plot the null distribution of the pathway score}
+\title{
+Plot the null distribution of the pathway score
+}
 \description{
 Plot the null distribution of the pathway score
 }
 \usage{
-plotNull(x)                 
+plotNull(x)
 }
 \arguments{
-  \item{x}{a \link{cepa} object}
+
+  \item{x}{a \code{\link{cepa}} object}
+
 }
 \details{
 There are two figures in the plotting.
 
-A) Distribution of node score in the pathway under simulation. Since a pathway contains
-a list of nodes. The distribution of node score for the pathway in each simulation is measures by maximum value, 
-the 75th quantile, median value and minimum value. The distribution of node score for 
-the pathway in the real data is highlighted.
+\itemize{
+  \item A) Distribution of node score in the pathway under simulation. Since a pathway contains a list of nodes. The distribution of node score for the pathway in each simulation is measures by maximum value,  the 75th quantile, median value and minimum value. The distribution of node score for  the pathway in the real data is highlighted.
+}
 
-B) Histogram of simulated pathway scores. 
+\itemize{
+  \item B) Histogram of simulated pathway scores. 
+}
 
 The function is always called through \code{\link{plot.cepa.all}} and \code{\link{plot.cepa}}.
 }
-\author{Zuguang Gu}
+\author{
+Zuguang Gu <z.gu@dkfz.de>
+}
 \seealso{
 \code{\link{cepa}}, \code{\link{plot.cepa}}
 }
