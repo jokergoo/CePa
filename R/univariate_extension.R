@@ -149,7 +149,7 @@ cepa.univariate.all = function(mat, label, pc, cen = default.centralities,
                 gene.in.node.in.mat = gene.in.node[gene.in.node %in% rownames(mat.gene)]
                 if(length(gene.in.node.in.mat) == 1) {
                     mat.node[k, ] = mat.gene[gene.in.node.in.mat, ]
-                } else if(length(gene.in.node.in.mat > 1)) {  # use the biggeset component of member gene expression matrix
+                } else if(length(gene.in.node.in.mat) > 1) {  # use the biggeset component of member gene expression matrix
                     mm = t(mat.gene[gene.in.node.in.mat, ])
                     pcar = prcomp(mm)
                     mat.node[k, ] = predict(pcar, mm)[, 1]
@@ -321,7 +321,7 @@ cepa.univariate = function(mat, label, pc, pathway = NULL, id = NULL, cen = "equ
                 gene.in.node.in.mat = gene.in.node[gene.in.node %in% rownames(mat.gene)]
                 if(length(gene.in.node.in.mat) == 1) {
                     mat.node[i, ] = mat.gene[gene.in.node.in.mat, ]
-                } else if(length(gene.in.node.in.mat > 1)) {  # use the biggeset component of member gene expression matrix
+                } else if(length(gene.in.node.in.mat) > 1) {  # use the biggeset component of member gene expression matrix
                     mm = t(mat.gene[gene.in.node.in.mat, ])
                     pcar = prcomp(mm)
                     mat.node[i, ] = predict(pcar, mm)[, 1]
