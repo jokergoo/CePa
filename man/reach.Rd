@@ -11,7 +11,7 @@ reach(graph, weights=E(graph)$weight, mode=c("all", "in", "out"))
 }
 \arguments{
 
-  \item{graph}{an \code{\link[igraph]{igraph}} object}
+  \item{graph}{an \code{\link[igraph:aaa-igraph-package]{igraph}} object}
   \item{mode}{mode of the centrality}
   \item{weights}{If the edges in the graph have weight, then by default, the weight is used to calculate the length of the shortest path. Set it to NULL to supress the weight.}
 

@@ -104,7 +104,8 @@ res.ora = cepa.all(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI)
 # P53_symbol.gct and P53_cls can be downloaded from
 # http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
 eset = read.gct("http://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53_symbol.gct")
-label = read.cls("http://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53.cls", treatment="MUT", control="WT")
+label = read.cls("http://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53.cls", 
+    treatment="MUT", control="WT")
 # will spend about 45 min
 res.gsa = cepa.all(mat = eset, label = label, pc = PID.db$NCI)
 }

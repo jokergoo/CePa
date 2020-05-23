@@ -11,7 +11,7 @@ radiality(graph, mode = c("all", "in", "out"))
 }
 \arguments{
 
-  \item{graph}{an \code{\link[igraph]{igraph}} object}
+  \item{graph}{an \code{\link[igraph:aaa-igraph-package]{igraph}} object}
   \item{mode}{mode of the centrality}
 
 }

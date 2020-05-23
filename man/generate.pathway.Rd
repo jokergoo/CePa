@@ -15,7 +15,7 @@ generate.pathway(el)
 
 }
 \details{
-The function is a wrapper of \code{\link[igraph]{graph.edgelist}} and it generates
+The function is a wrapper of \code{\link[igraph:graph_from_edgelist]{graph.edgelist}} and it generates
 a directed graph.
 
 In the function, repeated edged for two nodes will be eliminated.
@@ -24,7 +24,7 @@ In the function, repeated edged for two nodes will be eliminated.
 Zuguang Gu <z.gu@dkfz.de>
 }
 \seealso{
-\code{\link{cepa}}, \code{\link[igraph]{graph.edgelist}}
+\code{\link{cepa}}, \code{\link[igraph:graph_from_edgelist]{graph.edgelist}}
 }
 \examples{
 edgelist = rbind(c("a", "b"), c("a", "b"), c("a", "c"))

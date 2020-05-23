@@ -18,7 +18,7 @@ cepa.ora(dif, pc, bk = NULL, pathway = NULL, id = NULL, cen = "equal.weight",
   \item{dif}{differential gene list}
   \item{pc}{a \code{pathway.catalogue} class object}
   \item{bk}{background gene list. If background gene list are not specified, use whole human genes}
-  \item{pathway}{\code{\link[igraph]{igraphtest}} object or edge list}
+  \item{pathway}{\code{\link[igraph:igraph_test]{igraphtest}} object or edge list}
   \item{id}{identify which pathway in the catalogue}
   \item{cen}{centrality measuments, it can ce a string, function, or function that has been quoted}
   \item{cen.name}{centrality measurement names. This argument should be set if the \code{cen} is a function.}

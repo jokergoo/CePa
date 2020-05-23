@@ -11,7 +11,7 @@ pathway.nodes(pathway)
 }
 \arguments{
 
-  \item{pathway}{an \code{\link[igraph]{igraph}} object}
+  \item{pathway}{an \code{\link[igraph:aaa-igraph-package]{igraph}} object}
 
 }
 \details{

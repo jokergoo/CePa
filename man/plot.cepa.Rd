@@ -23,7 +23,7 @@ If type is specified to "null", the null distribution of the pathway score
 in the pathway will be plotted (see \code{\link{plotNull}} for details).
 }
 \value{
-if type is set to "graph", the function will return a \code{\link[igraph]{igraph}} object or a \code{graphML} object of the pathway. Else it is NULL.
+if type is set to "graph", the function will return a \code{\link[igraph:aaa-igraph-package]{igraph}} object or a \code{graphML} object of the pathway. Else it is NULL.
 }
 \author{
 Zuguang Gu <z.gu@dkfz.de>

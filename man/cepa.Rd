@@ -20,7 +20,7 @@ cepa(dif = NULL, bk = NULL, mat = NULL, label = NULL, pc, pathway = NULL,
   \item{mat}{expression matrix in which rows are genes and columns are samples}
   \item{label}{a \code{\link{sampleLabel}} object identify the design of the microarray experiment}
   \item{pc}{a \code{pathway.catalogue} object storing information of pathways}
-  \item{pathway}{an \code{\link[igraph]{igraphtest}} object or edge list}
+  \item{pathway}{an \code{\link[igraph:igraph_test]{igraphtest}} object or edge list}
   \item{id}{identify which pathway should be analysis in the pathway catalogue}
   \item{cen}{centrality measuments, it can ce a string, or function has been quote}
   \item{cen.name}{centrality measurement names. This argument should be set if the \code{cen} is a function.}

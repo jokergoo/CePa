@@ -230,8 +230,12 @@ template = function(text, replacement, code.pattern = NULL) {
     newlines = character(length(lines))
 
     # import variables in replacement
-    attach(replacement, warn.conflicts = FALSE)
-    on.exit(detach(replacement))
+    # attach(replacement, warn.conflicts = FALSE)
+    # on.exit(detach(replacement))
+
+    for(nm in names(replacement)) {
+        assign(nm, replacement[[nm]])
+    }
 
     for (i in 1:length(lines)) {
 
@@ -276,8 +280,6 @@ template = function(text, replacement, code.pattern = NULL) {
             newlines[i] = lines[i]
         }
     }
-
-    
 
     return(paste(newlines, collapse="\n"))
 }

@@ -481,7 +481,6 @@ plotNull = function(x) {
 # -graph.node.min.size min size of the node in the graph
 # -graph.layout.method function of the layout method. For the list
 #                      of available methods, see `igraph::layout`
-# -...                 other arguments
 #
 # == details
 # Graph view of the pathway where the size of node is proportional to centrality 

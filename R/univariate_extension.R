@@ -231,7 +231,9 @@ cepa.univariate.all = function(mat, label, pc, cen = default.centralities,
 # res.gsa = cepa.univariate(mat = eset, label = label, pc = PID.db$NCI, id = 2)
 # }
 cepa.univariate = function(mat, label, pc, pathway = NULL, id = NULL, cen = "equal.weight",
-                   cen.name = if(is.function(cen)) deparse(substitute(cen)) else if(mode(cen) == "name") deparse(cen) else cen,
+                   cen.name = if(is.function(cen)) deparse(substitute(cen)) 
+                              else if(mode(cen) == "name") deparse(cen) 
+                              else cen,
                    iter = 1000, nlevel = "tvalue_abs", plevel = "mean",
                    node.level.from.expr = NULL, node.level.t.value = NULL,
                    r.node.level.from.expr = NULL) {
