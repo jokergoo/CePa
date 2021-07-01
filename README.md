@@ -1,6 +1,4 @@
 
-[![R-CMD-check](https://github.com/jokergoo/CePa/workflows/R-CMD-check/badge.svg)](https://github.com/jokergoo/CePa/actions)
-
 ### to-do
 
 1. support biopax
