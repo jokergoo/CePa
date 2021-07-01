@@ -59,9 +59,9 @@ data(gene.list)
 res.ora = cepa.all.parallel(dif = gene.list$dif, bk = gene.list$bk, pc = PID.db$NCI, ncores = 4)
 # GSA extension
 # P53_symbol.gct and P53_cls can be downloaded from
-# http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
-eset = read.gct("http://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53_symbol.gct")
-label = read.cls("http://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53.cls", 
+# https://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+eset = read.gct("https://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53_symbol.gct")
+label = read.cls("https://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53.cls", 
     treatment="MUT", control="WT")
 res.gsa = cepa.all.parallel(mat = eset, label = label, pc = PID.db$NCI, ncores = 4)
 }

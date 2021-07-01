@@ -71,9 +71,9 @@ Zuguang Gu <z.gu@dkfz.de>
 data(PID.db)
 # GSA extension
 # P53_symbol.gct and P53.cls can be downloaded from
-# http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
-eset = read.gct("http://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53_symbol.gct")
-label = read.cls("http://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53.cls", 
+# https://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+eset = read.gct("https://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53_symbol.gct")
+label = read.cls("https://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53.cls", 
     treatment="MUT", control="WT")
 # will spend about 45 min
 res.gsa = cepa.univariate.all(mat = eset, label = label, pc = PID.db$NCI)

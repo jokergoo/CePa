@@ -16,7 +16,7 @@
 
 \maketitle 
 
-Pathway Interaction Database (PID) (http://pid.nci.nih.gov/) provides interaction data of pathways in several formats (XML and BioPAX). Here we parsed the PID XML format data (ftp://ftp1.nci.nih.gov/pub/PID/XML/).
+Pathway Interaction Database (PID) (https://pid.nci.nih.gov/) provides interaction data of pathways in several formats (XML and BioPAX). Here we parsed the PID XML format data.
 
 Data stored in PID XML file can be divided into four levels: pathway level, interaction level, node level and gene/compound level. The relationship between four levels is visualized in figure \ref{figure:levels}. Generally speaking, a pathway catalogue contains a list of pathways. Each pathway is composed of a list of interactions. Each interaction is represented as relation between an input node and an output node. Each node has different characters depending on whether it is a single protein, a complex or other non-protein molecules.
 
@@ -127,6 +127,6 @@ The mapping data stored in R looks like as follows in which the first column is 
 
 The parsing procedure has been implemented as Perl scripts, the scripts can directly generate an RData file that can be loaded into R session.
 
-URL for parsing script: http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+URL for parsing script: https://mcube.nju.edu.cn/jwang/lab/soft/cepa/
 
 \end{document}

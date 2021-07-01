@@ -49,7 +49,7 @@ data(PID.db)
 
 # GSA extension
 # P53_symbol.gct and P53_cls can be downloaded from
-# http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+# https://mcube.nju.edu.cn/jwang/lab/soft/cepa/
 eset = read.gct("P53_symbol.gct")
 label = read.cls("P53.cls", treatment="MUT", control="WT")
 # will spend about 45 min

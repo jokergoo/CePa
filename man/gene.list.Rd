@@ -25,7 +25,7 @@ A list containing two componets:
 }
 }
 \section{Source}{
-\url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE22058}}
+\url{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE22058}}
 \examples{
 data(gene.list)
 names(gene.list)

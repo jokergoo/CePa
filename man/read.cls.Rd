@@ -31,7 +31,7 @@ and class labels are taken from the factor of the vector parsed from the third l
 A \code{sampleLabel} class object
 }
 \section{Source}{
-\url{http://www.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats}}
+\url{https://www.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats}}
 \author{
 Zuguang Gu <z.gu@dkfz.de>
 }
@@ -41,8 +41,8 @@ Zuguang Gu <z.gu@dkfz.de>
 \examples{
 \dontrun{
 # P53.cls can be downloaded from
-# http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
-label = read.cls("http://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53.cls", 
+# https://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+label = read.cls("https://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53.cls", 
     treatment="MUT", control="WT")
 }
 }

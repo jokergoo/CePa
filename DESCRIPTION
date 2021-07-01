@@ -1,8 +1,8 @@
 Package: CePa
 Type: Package
 Title: Centrality-Based Pathway Enrichment
-Version: 0.8.1
-Date: 2020-05-23
+Version: 0.8.0
+Date: 2021-04-20
 Author: Zuguang Gu
 Maintainer: Zuguang Gu <z.gu@dkfz.de>
 Depends: R (>= 3.0.0)
@@ -13,7 +13,7 @@ Description: This package aims to find significant pathways through
     with current pathway enrichment tools. First, pathway node instead 
     of single gene is taken as the basic unit when analysing networks 
     to meet the fact that genes must be constructed into complexes to 
-    hold normal functions. Second, multiple network centralities are 
+    hold normal functions. Second, multiple network centrality measures are 
     applied simultaneously to measure importance of nodes from different 
     aspects to make a full view on the biological system. CePa extends 
     standard pathway enrichment methods, which include both over-representation 

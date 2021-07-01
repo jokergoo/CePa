@@ -30,7 +30,7 @@ A matrix of the expression values, with rows correponding to genes and cols to
 samples.
 }
 \section{Source}{
-\url{http://www.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats}}
+\url{https://www.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats}}
 \author{
 Zuguang Gu <z.gu@dkfz.de>
 }
@@ -38,8 +38,8 @@ Zuguang Gu <z.gu@dkfz.de>
 \dontrun{
 # expression data stored in a gct format file
 # P53_symbol.gct can be downloaded from
-# http://mcube.nju.edu.cn/jwang/lab/soft/cepa/
-eset = read.gct("http://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53_symbol.gct")
+# https://mcube.nju.edu.cn/jwang/lab/soft/cepa/
+eset = read.gct("https://mcube.nju.edu.cn/jwang/lab/soft/cepa/P53_symbol.gct")
 head(eset)
 }
 }

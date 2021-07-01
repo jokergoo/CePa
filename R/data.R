@@ -67,15 +67,6 @@
 # Each pathway catalogue is a ``pathway.catalogue`` class object. Each pathway
 # catalogue can be used directly in `cepa.all` and `cepa`
 #
-# == source
-# ftp://ftp1.nci.nih.gov/pub/PID/XML/NCI-Nature_Curated.xml.gz
-#
-# ftp://ftp1.nci.nih.gov/pub/PID/XML/BioCarta.xml.gz
-#
-# ftp://ftp1.nci.nih.gov/pub/PID/XML/Reactome.xml.gz
-#
-# ftp://ftp1.nci.nih.gov/pub/PID/XML/KEGG.xml.gz
-#
 # == examples
 # data(PID.db)
 # names(PID.db)
