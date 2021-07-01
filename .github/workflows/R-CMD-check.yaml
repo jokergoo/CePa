@@ -40,7 +40,10 @@ jobs:
           r-version: ${{ matrix.config.r }}
 
       - uses: r-lib/actions/setup-pandoc@v1
-
+      - name: Install X11 dependencies on MacOS
+        if: runner.os == 'macOS'
+        run: |
+          brew install xquartz
       - name: Query dependencies
         run: |
           install.packages('remotes')
@@ -65,6 +68,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          setRepositories(ind = 1:5)
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
